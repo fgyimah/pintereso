@@ -1,9 +1,9 @@
 <section class="section instrument-show">
   <div class="columns">
-    <div class="column is-8">
+    <div class="column is-5 is-center mx-auto">
       <h1 class="title is-2"><%= @pin.title %></h1>
-
-      <div class="feature-image">
+      <span>Submited by <%= @pin.user.email%></span>
+      <div class="feature-image mx-auto">
         <%= image_tag(@pin.image_url(:default)) %>
       </div>
 
