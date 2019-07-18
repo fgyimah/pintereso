@@ -1,0 +1,22 @@
+<section class="section instrument-show">
+  <div class="columns">
+    <div class="column is-8">
+      <h1 class="title is-2"><%= @pin.title %></h1>
+
+      <div class="feature-image">
+        <%= image_tag(@pin.image_url(:default)) %>
+      </div>
+
+      <div class="content pa4 mt3 bg-white border-radius-3">
+
+      <h3 class="subtitle is-4">Description</h3>
+      <%= @pin.description %>
+      </div>
+    </div>
+  </div>
+
+  <% if pin_author(@pin) %>
+    <%= link_to 'Edit', edit_pin_path(@pin), class: 'button is-info is-small' %>
+    <%= link_to 'Delete', @pin, method: :delete, data: {confirm: "Are you sure you want to delete this instrument"}, class: 'button is-danger is-small'%>
+  <% end %> 
+</section>

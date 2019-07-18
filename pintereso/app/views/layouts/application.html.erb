@@ -7,9 +7,73 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= favicon_link_tag asset_path('logo.png'), :rel => 'icon', :type =>  'image/png' %>
   </head>
 
   <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+    <a class="navbar-brand font-weight-bolder mr-3" href="/"><%= image_tag  "logo.png" %><h1 class="my-auto align-middle">PINTERESO</h1></a>
+    <button class="navbar-light navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsDefault" aria-controls="navbarsDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarsDefault">
+    	<ul class="navbar-nav ml-auto align-items-center">
+    		<li class="nav-item">
+    		<%= link_to  "Home", root_path, class: "nav-link active"%>
+    		</li>
+    		<li class="nav-item">
+    		<%= link_to  "About", "#", class: "nav-link" %>
+    		</li>
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <div class="nav-link">
+              <%= link_to "Author", edit_user_registration_path, class: "align-middle" %><%= image_tag  "av.png", class: "rounded-circle mr-2", width: "30px" %>
+            </div>
+    		   <li class="nav-item dropdown">
+              <a class="nav-link" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <svg style="margin-top:10px;" class="_3DJPT" version="1.1" viewbox="0 0 32 32" width="21" height="21" aria-hidden="false" data-reactid="71"><path d="M7 15.5c0 1.9-1.6 3.5-3.5 3.5s-3.5-1.6-3.5-3.5 1.6-3.5 3.5-3.5 3.5 1.6 3.5 3.5zm21.5-3.5c-1.9 0-3.5 1.6-3.5 3.5s1.6 3.5 3.5 3.5 3.5-1.6 3.5-3.5-1.6-3.5-3.5-3.5zm-12.5 0c-1.9 0-3.5 1.6-3.5 3.5s1.6 3.5 3.5 3.5 3.5-1.6 3.5-3.5-1.6-3.5-3.5-3.5z" data-reactid="22"></path></svg>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right shadow-lg" aria-labelledby="dropdown02">
+                <%= link_to "New Pin", new_pin_path, class: "nav-link" %>
+                <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "nav-link" %>
+              </div>
+              </li>
+    		  </li>
+        <% else %>
+          <%= link_to  "Log In", new_user_session_path, class: "nav-link" %>
+          <%= link_to  "Sign Up", new_user_registration_path, class: "nav-link" %>
+        <% end %>
+    	</ul>
+    </div>
+    </nav> 
+        <% if flash[:notice] %>
+      <div class="notification is-success global-notification">
+        <p class="notice"><%= notice %></p>
+      </div>
+    <% end %>
+    <% if flash[:alert] %>
+    <div class="notification is-danger global-notification">
+      <p class="alert"><%= alert %></p>
+    </div>
+    <% end %>   
     <%= yield %>
+    <footer class="footer pt-5 pb-5 text-center">
+        
+    <div class="container">
+        
+          <div class="socials-media">
+    
+            <ul class="list-unstyled">
+              <li class="d-inline-block ml-1 mr-1"><a href="https://facebook.com/fgyimah883" target="_blank" class="text-dark"><i class="fa fa-facebook"></i></a></li>
+              <li class="d-inline-block ml-1 mr-1"><a href="https://twitter.com/fgyimah883" target="_blank" class="text-dark"><i class="fa fa-twitter"></i></a></li>
+              <li class="d-inline-block ml-1 mr-1"><a href="https://instagram.com/francisco_lyrisis" target="_blank" class="text-dark"><i class="fa fa-instagram"></i></a></li>
+              <li class="d-inline-block ml-1 mr-1"><a href="#" class="text-dark"><i class="fa fa-behance"></i></a></li>
+              <li class="d-inline-block ml-1 mr-1"><a href="#" class="text-dark"><i class="fa fa-dribbble"></i></a></li>
+            </ul>
+    
+          </div>
+        </div>
+        
+    </footer>    
   </body>
 </html>

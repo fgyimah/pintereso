@@ -1,0 +1,24 @@
+<main role="main">
+  <section class="mt-4 mb-5">
+    <div class="container mb-4">
+      <h1 class="font-weight-bold title">Explore</h1>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="card-columns">
+            <% @pins.each do |pin| %>
+              <div class="card card-pin">
+                <%= link_to image_tag(pin.image_url(:thumb)), pin , class: "card-img"%>
+                <div class="overlay">
+                  <h2 class="card-title title"><%= pin.title %></h2>
+                  <div class="more">
+                    <%= link_to "More", pin, class: "fa fa-arrow-circle-o-right" %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
